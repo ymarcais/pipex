@@ -1,0 +1,209 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    subjects_key_words.txt                             :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ymarcais <ymarcais@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/03/15 09:16:11 by ymarcais          #+#    #+#              #
+#    Updated: 2023/04/25 14:23:49 by ymarcais         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+perror():   Used to print a descriptive error message to the standard error \
+            stream (stderr) along with an error code corresponding to the current \
+            value of the "errno" variable.
+
+strerror(): The "strerror" function looks up the error message corresponding to \
+            the error code and returns a pointer to a null-terminated string \
+            containing the message.
+
+stderr:     Is a standard output stream used for printing error messages and \
+            diagnostics. 'fprintf(stderr, "An error occurred!\n");'
+
+errno:      Is a global variable defined in the "errno.h" header file that \
+            stores the error code of the most recent system or library call \
+            that failed.
+
+access():   Is a function defined in the "unistd.h" header file that tests whether \
+            the calling process has permission to access a particular file or directory.
+
+            The "access" function takes two arguments: the first is a pointer to a \
+            string containing the path to the file or directory to be tested, and the \
+            second is a bitmask representing the type of access to be tested. The \
+            function returns 0 if the calling process has the requested access, \
+            or -1 if the access is denied or an error occurs.
+
+dup():      Is a function defined in the "unistd.h" header file that duplicates a \
+            file descriptor, creating a new descriptor that refers to the same \
+            underlying file or other I/O resource.
+
+            The "dup" function takes a single argument, which is the file descriptor
+            to be duplicated. It returns a new file descriptor that refers to the same \
+            underlying I/O resource as the original descriptor. The new file descriptor \
+            is guaranteed to be the lowest available descriptor that is not already in \
+            use by the process.
+
+dup2():     Is a function defined in the "unistd.h" header file that duplicates a file \
+            descriptor, creating a new descriptor that refers to the same underlying file \
+            or other I/O resource, and optionally closes the original descriptor.
+
+            The "dup2" function takes two arguments: the first is the file descriptor to be \
+            duplicated, and the second is the file descriptor to be used as the new descriptor. \
+            If the second descriptor is already open, it will be closed before the new descriptor \
+            is created.
+
+execve:     Unix -It is used to execute a new program in the current process context. When execve \
+            is called, the current program is replaced with the new program specified in the \
+            arguments.
+
+            The execve system call takes three arguments:
+
+            1 - A pointer to a null-terminated string that specifies the path to the program \
+            to be executed.
+            2 - An array of null-terminated strings that represent the program's command-line \
+            arguments.
+            3 - An array of null-terminated strings that represent the program's environment \
+            variables.
+
+            The execve system call loads the program into the current process's memory and \
+            starts its execution from the entry point specified in the program's header. The
+            new program runs with the same process ID (PID) and memory space as the calling 
+            program, but with its own stack and heap.
+
+fork:       Unix -It creates a new process by duplicating the calling process. The new process is \
+            called the child process, and the original process is called the parent process.
+
+            The fork system call returns different values to the parent and the child processes.\
+            In the parent process, fork returns the PID (process ID) of the child process, \
+            while in the child process, fork returns 0. This allows the parent and the child \
+            processes to distinguish between themselves and take different actions as needed.
+
+pipe:       Unix -It creates a unidirectional communication channel between two related processes, \
+            such as a parent process and its child process. The communication channel is \
+            implemented as a pair of file descriptors, one for reading and one for writing.\
+            
+            When pipe is called, the operating system creates a new communication channel \
+            and returns two file descriptors. The first file descriptor is for reading from \
+            the channel, and the second file descriptor is for writing to the channel. \
+            The parent process can write data to the channel using the write() system call, 
+            and the child process can read the data using the read() system call.
+
+            Pipes are commonly used for interprocess communication (IPC), where two processes 
+            need to exchange data in a synchronized way. The parent process can send data to 
+            the child process through the pipe, and the child process can respond by sending 
+            data back through the same pipe. Pipes can also be used for input/output (I/O) 
+            redirection, where the output of one command is piped as input to another command.
+
+            Pipes are unidirectional, so two separate pipes are needed for full duplex \
+            communication between two processes. However, it's possible to create a 
+            bidirectional communication channel using two pipes in opposite directions. \
+            This is commonly known as a "full-duplex pipe" or "named pipe".
+
+unlink:     Unix - It is used to remove a directory entry or a symbolic link from the file system. \
+            Unlike rm, which deletes the file itself, unlink only removes the link to the \
+            file, and the file itself is only deleted when there are no more links pointing \
+            to it.
+
+            When unlink is called, the operating system checks the link count of the file. 
+            If the link count is greater than one, the file is not deleted, but the link 
+            count is decremented by one. If the link count is one, the file is deleted from \
+            the file system
+
+relink: ???
+
+bus:        Refers to a communication pathway used by various components of a computer system \
+            to exchange data and control signals between them. A bus can be thought of as a \
+            shared communication channel that allows different devices to communicate with each \
+            other.
+            
+wait:       Unix -Is used to suspend the execution of a process until one of its child processes \
+            terminates. The wait call allows a parent process to synchronize its execution with that \
+            of its child processes, so that the parent can collect information about the child process, \
+            such as its exit status.
+
+            When a parent process calls wait, it blocks until one of its child processes terminates. \
+            If the child has already terminated, the wait call returns immediately, allowing the parent \
+            to retrieve the child's exit status. If the child has not yet terminated, the wait call blocks \
+            the parent process until the child terminates.
+
+            The wait call can also be used with the WNOHANG flag, which causes the call to return \
+            immediately if none of the child processes have terminated. This allows the parent process \
+            to continue executing without waiting for a child process to terminate.
+
+waitpid:    Provides similar functionality to wait, but allows the parent process to wait for a \
+            specific child process, rather than any child process. waitpid takes as arguments the \
+            process ID of the child process to wait for, and options to specify how to wait for the 
+            child process.
+
+            wait and waitpid are commonly used in Unix programs that create child processes \
+            to perform tasks, such as running shell commands or running background tasks. \
+            The parent process can use wait or waitpid to synchronize its execution with \
+            the child process and ensure that the child has completed its task before the parent \
+            proceeds.
+
+WIFEXITED(status): returns true if the child terminated normally, for example by calling exit or \
+            finishing through the main function of the program. 
+
+WEXITSTATUS(status): to be used only if WIFEXITED returned true. Returns the child’s exit code, \
+            meaning the number the child specified to the exit function or in the main function’s\
+            return.
+WIFSIGNALED(status): returns true if the child was forcefully terminated by a signal.
+
+WTERMSIG(status): to be used only if WIFSIGNALED returned true. Returns the signal number \
+            that provoked the child’s termination.
+
+SIGTERM:    SIGTERM is a signal in Unix-like operating systems that is used to request a process \
+            to terminate gracefully. It stands for "Signal Terminate".
+            
+sig:		The signal that we want to send to the process in order to kill it. There are many \
+			different possible signals for kill, each with its own nuances (see man 7 signal), \
+			but the most frequently used are perhaps SIGTERM (soft termination signal) and \
+			SIGKILL (hard kill signal).
+
+getenv():	Get the path of a command from the environment variable.
+
+env:		Shell command. Designed to call environement variable list.
+
+printenv PATH :	multiple paths separated by colons. Each of these paths represents a directory \
+			that the shell will search in order to find executable files.
+			
+which:		Give the path of a command.
+
+PATH :		Environment variable.
+
+envp :		envp is a parameter passed to the main() function that contains the program's \
+			environment variables as a null-terminated array of strings.
+
+F_OK : 		F_OK specifies that the function should only check if the file exists, and not check \
+			for any particular access permissions.
+    
+O_TRUNC:    This macro is used with the open() function to truncate the file to zero length if it already exists.
+
+S_IRUSR:    This macro specifies read permission for the owner of the file.
+
+S_IWUSR:    This macro specifies write permission for the owner of the file.
+
+S_IRGRP:    This macro specifies read permission for the group associated with the file.
+
+S_IWGRP:    This macro specifies write permission for the group associated with the file.
+
+S_IROTH:    This macro specifies read permission for other users who are not the owner of the \ 
+            file or part of the group associated with the file.
+
+S_IWOTH:    This macro specifies write permission for other users who are not the owner of the \
+            file or part of the group associated with the file.
+
+pipe():     is used to create an inter-process communication (IPC) channel between two processes.
+            The pipe() function creates a pipe, which is a unidirectional data channel that can be used \
+            to transfer data between two processes.
+            The pipe function takes an array of two integers as an argument, which will be used to return \
+            the file descriptors for the read and write ends of the pipe. The first element of the \
+            array will be used to read data from the pipe, while the second element of the array \
+            will be used to write data to the pipe.
+            pipefd is an array of two integers that will be used to return the file descriptors \
+            for the read and write ends of the pipe. The pipe() function returns 0 on success, \
+            or -1 on failure.
+
+INFILE / OUTFILE:   are typically used as preprocessor macros to represent standard input and \
+            standard output, respectively.
